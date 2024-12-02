@@ -31,26 +31,32 @@ const library = {
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
 const printPlaylists = function(obj) {
-       const keys = obj.playlists;
-       for (const k in keys) {
-           const playlist = keys[k];
-           let name = playlist.name;
-           let arrayOfTracks = playlist.tracks;
+       const playlistsObject = obj.playlists;
+       for (const p in playlistsObject) {
+           let playlistName = playlistsObject[p].name;
+           let arrayOfTracks = playlistsObject[p].tracks;
            let tracksCount = arrayOfTracks.length;
-           console.log(`${k}: ${name} - ${tracksCount} tracks`);
+           console.log(`${p}: ${playlistName} - ${tracksCount} tracks`);
        }
-   };
-//TEST CODE
-printPlaylist(library); 
+     };
+     //TEST CODE
+printPlaylists(library); 
 
 // prints a list of all tracks, using the following format:
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
-const printTracks = function() {
-
-}
-
+const printTracks = function(obj) {
+       const tracksObject = obj.tracks;
+       for (const t in tracksObject) {
+           let trackName = tracksObject[t].name; //why can't I write tracksObject.t.name?
+           let trackArtist = tracksObject[t].artist;
+           let trackAlbum = tracksObject[t].album;
+             console.log(`${t}: ${trackName} by ${trackArtist} (${trackAlbum})`);
+       }
+     };
+//TEST CODE
+printTracks(library);
 
 // prints a list of tracks for a given playlist, using the following format:
 // p01: Coding Music - 2 tracks
