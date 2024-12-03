@@ -83,13 +83,12 @@ printPlaylist("p02");
 // adds an existing track to an existing playlist
 const addTrackToPlaylist = function(trackId, playlistId) {
   const playlistsObject = library["playlists"];
-  const tracksObject = library["tracks"];
   let tracksArray = playlistsObject[playlistId]["tracks"];
   if (!tracksArray.includes(trackId)) {
     tracksArray.push(trackId);
   }
   return tracksArray.sort();
-}
+};
 //TEST CODE
 console.log(addTrackToPlaylist("t01", "p02"));
 console.log(addTrackToPlaylist("t03", "p01"));
@@ -99,28 +98,27 @@ console.log(addTrackToPlaylist("t03", "p02"));//testing for duplicates
 // (already implemented: use this for addTrack and addPlaylist)
 const generateUid = function() {
   return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-}
-
+};
 
 // adds a track to the library
 const addTrack = function(name, artist, album) {
-       let tracksObject = library.tracks;
-       //generate a unique track ID
-       let trackId = "t" + generateUid();
-       const allTrackIds = Object.keys(tracksObject);
-       //check for uniqueness
-       if (allTrackIds.includes(trackId)) {
-         console.log("This track ID already exists, regenerating...");
-         let trackId = "t" + generateUid(); //handle the case when the newly generated ID also exists
-       } else {
-          tracksObject[trackId] = {
-            id:  trackId,
-            name: name,
-            artist:  artist,
-            album:  album,
-         };
-          console.log(`Track ${trackId} added.`)
-         }
+  let tracksObject = library.tracks;
+  //generate a unique track ID
+  let trackId = "t" + generateUid();
+  const allTrackIds = Object.keys(tracksObject);
+  //check for uniqueness
+  if (allTrackIds.includes(trackId)) {
+    console.log("This track ID already exists, regenerating...");
+    let trackId = "t" + generateUid(); //handle the case when the newly generated ID also exists
+  } else {
+    tracksObject[trackId] = {
+      id:  trackId,
+      name: name,
+      artist:  artist,
+      album:  album,
+    };
+    console.log(`Track ${trackId} added.`);
+  }
 };
 //TEST CODE
 addTrack("Believe","Cher","Runaway");
