@@ -36,7 +36,7 @@ const printPlaylists = function(obj) {
     let playlistName = playlistsObject[p].name;
     let arrayOfTracks = playlistsObject[p].tracks;
     let tracksCount = arrayOfTracks.length;
-    console.log(`${p}: ${playlistName} - ${tracksCount} tracks`);
+    console.log(`${p}: ${playlistName} - ${tracksCount} tracks`); //need to refactor and print "track" if the number of tracks is 1
   }
 };
 //TEST CODE
@@ -82,9 +82,15 @@ printPlaylist("p02");
 
 // adds an existing track to an existing playlist
 const addTrackToPlaylist = function(trackId, playlistId) {
-
+  const playlistsObject = library["playlists"];
+  const tracksObject = library["tracks"];
+  let tracksArray = playlistsObject[playlistId]["tracks"];
+  return tracksArray.push[trackId];
 }
-
+//TEST CODE
+console.log(addTrackToPlaylist("t01", "p02"));
+//addTrackToPlaylist("t03", "p01");
+//addTrackToPlaylist("t03", "p02");
 
 // generates a unique id
 // (already implemented: use this for addTrack and addPlaylist)
