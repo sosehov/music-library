@@ -105,24 +105,25 @@ const generateUid = function() {
 // adds a track to the library
 const addTrack = function(name, artist, album) {
        let tracksObject = library.tracks;
-       console.log((tracksObject));
-       let trackId = generateUid();
-       //const allTrackIds = Object.keys(tracksObject);
-       /*if (tracksObject.includes(trackId)) {
-         console.log("This track already exists.");
-       }
-       else { */
-         tracksObject = trackId;
-         tracksObject[trackId]["id"] = trackId;
-         tracksObject[trackId]["name"] = name;
-         tracksObject[trackId]["artist"] = artist;
-         tracksObject[trackId]["album"] = album;
-       //}
+       //generate a unique track ID
+       let trackId = "t" + generateUid();
+       const allTrackIds = Object.keys(tracksObject);
+       //check for uniqueness
+       if (allTrackIds.includes(trackId)) {
+         console.log("This track ID already exists, regenerating...");
+         let trackId = "t" + generateUid(); //handle the case when the newly generated ID also exists
+       } else {
+          tracksObject[trackId] = {
+            id:  trackId,
+            name: name,
+            artist:  artist,
+            album:  album,
+         };
+          console.log(`Track ${trackId} added.`)
+         }
 };
 //TEST CODE
 addTrack("Believe","Cher","Runaway");
-//console.log(library.tracks);
-
 
 // adds a playlist to the library
 const addPlaylist = function(name) {
