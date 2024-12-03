@@ -93,7 +93,7 @@ const addTrackToPlaylist = function(trackId, playlistId) {
 //TEST CODE
 console.log(addTrackToPlaylist("t01", "p02"));
 console.log(addTrackToPlaylist("t03", "p01"));
-console.log(addTrackToPlaylist("t03", "p02"));
+console.log(addTrackToPlaylist("t03", "p02"));//testing for duplicates
 
 // generates a unique id
 // (already implemented: use this for addTrack and addPlaylist)
@@ -104,8 +104,24 @@ const generateUid = function() {
 
 // adds a track to the library
 const addTrack = function(name, artist, album) {
-
-}
+       let tracksObject = library.tracks;
+       console.log((tracksObject));
+       let trackId = generateUid();
+       //const allTrackIds = Object.keys(tracksObject);
+       /*if (tracksObject.includes(trackId)) {
+         console.log("This track already exists.");
+       }
+       else { */
+         tracksObject = trackId;
+         tracksObject[trackId]["id"] = trackId;
+         tracksObject[trackId]["name"] = name;
+         tracksObject[trackId]["artist"] = artist;
+         tracksObject[trackId]["album"] = album;
+       //}
+};
+//TEST CODE
+addTrack("Believe","Cher","Runaway");
+//console.log(library.tracks);
 
 
 // adds a playlist to the library
