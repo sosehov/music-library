@@ -85,7 +85,9 @@ const addTrackToPlaylist = function(trackId, playlistId) {
   const playlistsObject = library["playlists"];
   const tracksObject = library["tracks"];
   let tracksArray = playlistsObject[playlistId]["tracks"];
-  tracksArray.push(trackId);
+  if (!tracksArray.includes(trackId)) {
+    tracksArray.push(trackId);
+  }
   return tracksArray.sort();
 }
 //TEST CODE
