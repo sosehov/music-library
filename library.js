@@ -85,12 +85,13 @@ const addTrackToPlaylist = function(trackId, playlistId) {
   const playlistsObject = library["playlists"];
   const tracksObject = library["tracks"];
   let tracksArray = playlistsObject[playlistId]["tracks"];
-  return tracksArray.push[trackId];
+  tracksArray.push(trackId);
+  return tracksArray.sort();
 }
 //TEST CODE
 console.log(addTrackToPlaylist("t01", "p02"));
-//addTrackToPlaylist("t03", "p01");
-//addTrackToPlaylist("t03", "p02");
+console.log(addTrackToPlaylist("t03", "p01"));
+console.log(addTrackToPlaylist("t03", "p02"));
 
 // generates a unique id
 // (already implemented: use this for addTrack and addPlaylist)
