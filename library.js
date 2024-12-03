@@ -1,26 +1,26 @@
 const library = {
   tracks: { t01: { id: "t01",
-                   name: "Code Monkey",
-                   artist: "Jonathan Coulton",
-                   album: "Thing a Week Three" },
-            t02: { id: "t02",
-                   name: "Model View Controller",
-                   artist: "James Dempsey",
-                   album: "WWDC 2003"},
-            t03: { id: "t03",
-                   name: "Four Thirty-Three",
-                   artist: "John Cage",
-                   album: "Woodstock 1952"}
-          },
+    name: "Code Monkey",
+    artist: "Jonathan Coulton",
+    album: "Thing a Week Three" },
+  t02: { id: "t02",
+    name: "Model View Controller",
+    artist: "James Dempsey",
+    album: "WWDC 2003"},
+  t03: { id: "t03",
+    name: "Four Thirty-Three",
+    artist: "John Cage",
+    album: "Woodstock 1952"}
+  },
   playlists: { p01: { id: "p01",
-                      name: "Coding Music",
-                      tracks: ["t01", "t02"]
-                    },
-               p02: { id: "p02",
-                      name: "Other Playlist",
-                      tracks: ["t03"]
-                    }
-             }
+    name: "Coding Music",
+    tracks: ["t01", "t02"]
+  },
+  p02: { id: "p02",
+    name: "Other Playlist",
+    tracks: ["t03"]
+  }
+  }
 };
 
 /////////////////////////////
@@ -31,30 +31,30 @@ const library = {
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
 const printPlaylists = function(obj) {
-       const playlistsObject = obj.playlists;
-       for (const p in playlistsObject) {
-           let playlistName = playlistsObject[p].name;
-           let arrayOfTracks = playlistsObject[p].tracks;
-           let tracksCount = arrayOfTracks.length;
-           console.log(`${p}: ${playlistName} - ${tracksCount} tracks`);
-       }
-     };
-     //TEST CODE
-printPlaylists(library); 
+  const playlistsObject = obj.playlists;
+  for (const p in playlistsObject) {
+    let playlistName = playlistsObject[p].name;
+    let arrayOfTracks = playlistsObject[p].tracks;
+    let tracksCount = arrayOfTracks.length;
+    console.log(`${p}: ${playlistName} - ${tracksCount} tracks`);
+  }
+};
+//TEST CODE
+printPlaylists(library);
 
 // prints a list of all tracks, using the following format:
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
 const printTracks = function(obj) {
-       const tracksObject = obj.tracks;
-       for (const t in tracksObject) {
-           let trackName = tracksObject[t].name; //why can't I write tracksObject.t.name?
-           let trackArtist = tracksObject[t].artist;
-           let trackAlbum = tracksObject[t].album;
-             console.log(`${t}: ${trackName} by ${trackArtist} (${trackAlbum})`);
-       }
-     };
+  const tracksObject = obj.tracks;
+  for (const t in tracksObject) {
+    let trackName = tracksObject[t].name; //why can't I write tracksObject.t.name?
+    let trackArtist = tracksObject[t].artist;
+    let trackAlbum = tracksObject[t].album;
+    console.log(`${t}: ${trackName} by ${trackArtist} (${trackAlbum})`);
+  }
+};
 //TEST CODE
 printTracks(library);
 
@@ -65,17 +65,17 @@ printTracks(library);
 const playlistsObject = library["playlists"];
 const tracksObject = library["tracks"];
 const printPlaylist = function(playlistId) {
-       const trackName = playlistsObject[playlistId]["name"];
-       const playlistTracks = playlistsObject[playlistId]["tracks"];
-       const tracksCount = playlistTracks.length;
-       console.log(`${playlistId}: ${trackName} - ${tracksCount} tracks`);
-       for (let t of playlistTracks) {
-              let trackName = tracksObject[t]["name"];
-              let trackArtist = tracksObject[t]["artist"];
-              let trackAlbum = tracksObject[t]["album"];
-              console.log(`${t}: ${trackName} by ${trackArtist} (${trackAlbum})`);
-       }
-}
+  const trackName = playlistsObject[playlistId]["name"];
+  const playlistTracks = playlistsObject[playlistId]["tracks"];
+  const tracksCount = playlistTracks.length;
+  console.log(`${playlistId}: ${trackName} - ${tracksCount} tracks`);
+  for (let t of playlistTracks) {
+    let trackName = tracksObject[t]["name"];
+    let trackArtist = tracksObject[t]["artist"];
+    let trackAlbum = tracksObject[t]["album"];
+    console.log(`${t}: ${trackName} by ${trackArtist} (${trackAlbum})`);
+  }
+};
 //TEST CODE
 printPlaylist("p01");
 printPlaylist("p02");
