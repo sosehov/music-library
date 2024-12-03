@@ -125,9 +125,23 @@ addTrack("Believe","Cher","Runaway");
 
 // adds a playlist to the library
 const addPlaylist = function(name) {
-
-}
-
+  const playlistsObject = library["playlists"];
+  let playlistId = "t" + generateUid();
+  const allPlaylistsId = Object.keys(playlistsObject);
+  if (allPlaylistsId.includes(playlistId)) {
+       console.log("This playlist already exists, regenerating...");
+       let playlistId = "t" + generateUid(); //handle the case when the newly generated ID also exists
+     } else {
+       playlistsObject[playlistId] = {
+         id:  playlistId,
+         name: name,
+         tracks:  "t01"
+       };
+       console.log(`Playlist ${playlistId} added.`);
+     }
+   };
+//TEST CODE
+addPlaylist("Chilling Music");
 
 // STRETCH:
 // given a query string string, prints a list of tracks
