@@ -53,8 +53,8 @@ const library = {
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
   printPlaylist: function(playlistId) {
-  const playlistsObject = library["playlists"];
-  const tracksObject = library["tracks"];
+  const playlistsObject = this.playlists;
+  const tracksObject = this.tracks;
   const trackName = playlistsObject[playlistId]["name"];
   const playlistTracks = playlistsObject[playlistId]["tracks"];
   const tracksCount = playlistTracks.length;
