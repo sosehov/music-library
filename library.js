@@ -24,7 +24,7 @@ const library = {
 // prints a list of all playlists, in the form:
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
-  printPlaylists: function() {
+  printPlaylists: function(obj) {
     const playlistsObject = this.playlists;
     for (const p in playlistsObject) {
       let playlistName = playlistsObject[p].name;
@@ -39,7 +39,7 @@ const library = {
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
-  printTracks: function() {
+  printTracks: function(obj) {
        const tracksObject = this.tracks;
        for (const t in tracksObject) {
        let trackName = tracksObject[t].name; //why can't I write tracksObject.t.name?
@@ -68,7 +68,7 @@ const library = {
   },
   // adds an existing track to an existing playlist
   addTrackToPlaylist: function(trackId, playlistId) {
-    const playlistsObject = library["playlists"];
+    const playlistsObject = this.playlists;
     let tracksArray = playlistsObject[playlistId]["tracks"];
     if (!tracksArray.includes(trackId)) {
        tracksArray.push(trackId);
@@ -82,14 +82,14 @@ const library = {
   },
 // adds a track to the library
   addTrack: function(name, artist, album) {
-    let tracksObject = library.tracks;
+    let tracksObject = this.tracks;
     //generate a unique track ID
-    let trackId = "t" + generateUid();
+    let trackId = "t" + this.generateUid();
     const allTrackIds = Object.keys(tracksObject);
     //check for uniqueness
     if (allTrackIds.includes(trackId)) {
     console.log("This track ID already exists, regenerating...");
-    let trackId = "t" + generateUid(); //handle the case when the newly generated ID also exists
+    let trackId = "t" + this.generateUid(); //stretch for later: handle the case when the newly generated ID also exists
     } else {
        tracksObject[trackId] = {
        id:  trackId,
@@ -102,12 +102,12 @@ const library = {
 },
 // adds a playlist to the library
   addPlaylist: function(name) {
-    const playlistsObject = library["playlists"];
-    let playlistId = "t" + generateUid();
+    const playlistsObject = this.playlists;
+    let playlistId = "t" + this.generateUid();
     const allPlaylistsId = Object.keys(playlistsObject);
     if (allPlaylistsId.includes(playlistId)) {
       console.log("This playlist already exists, regenerating...");
-      let playlistId = "t" + generateUid(); //handle the case when the newly generated ID also exists
+      let playlistId = "t" + this.generateUid(); //handle the case when the newly generated ID also exists
     } else {
        playlistsObject[playlistId] = {
        id:  playlistId,
@@ -116,28 +116,27 @@ const library = {
        };
        console.log(`Playlist ${playlistId} added.`);
        }
-  },
+  }
 };
-
 
 //TEST CODE
 library.printPlaylists();
 library.printTracks();
 library.printPlaylist("p01");
 library.printPlaylist("p02");
+library.addTrackToPlaylist("t01", "p02");
+library.addTrackToPlaylist("t03", "p01");
+library.addTrackToPlaylist("t03", "p02");//testing for duplicates
+library.addTrack("Believe","Cher","Runaway");
+console.log(library.tracks);
+library.addPlaylist();
+console.log(library.playlists);
 
-//TEST CODE
-console.log(addTrackToPlaylist("t01", "p02"));
-console.log(addTrackToPlaylist("t03", "p01"));
-console.log(addTrackToPlaylist("t03", "p02"));//testing for duplicates
-
-//TEST CODE
-addTrack("Believe","Cher","Runaway");
- STRETCH:
+ //STRETCH:
 // given a query string string, prints a list of tracks
 // where the name, artist or album contains the query string (case insensitive)
 // tip: use "string".search("tri") 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
-const printSearchResults = function(query) {
+//const printSearchResults = function(query) {
 
-}
+//}
